@@ -21,12 +21,39 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 }
 
-//추후에 module_oauth 의존성 추가해야함
-project(':resource-server') {
-    //api project(':module-auth')
+project(':module_oauth') {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'java'
+    apply plugin: 'java-library'
+
+    bootJar {enabled = false}
+    jar {enabled = true}
+
+    dependencies {
+        // security
+        api 'org.springframework.boot:spring-boot-starter-security'
+        api 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+        // 웹 관련 의존성 추가
+        api 'org.springframework.boot:spring-boot-starter-web'
+
+        // Swagger/OpenAPI 의존성 추가
+        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+
+        // Lombok 의존성 추가
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        testImplementation 'org.springframework.security:spring-security-test'
+        testImplementation 'org.mockito:mockito-inline:2.13.0'
+    }
+}
+
+
+project(':resource-server') {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java-library'
 
     dependencies {
         implementation 'me.paulschwarz:spring-dotenv:3.0.0'
@@ -34,11 +61,12 @@ project(':resource-server') {
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
         implementation 'org.mariadb.jdbc:mariadb-java-client'
-
+        api project(':module_oauth')
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
 
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'com.h2database:h2'
     }
 
     java {
@@ -49,12 +77,7 @@ project(':resource-server') {
     tasks.named('test') {
         useJUnitPlatform()
     }
-
 }
-
-
-
-//project('module-oauth'){}
 
 spotless {
     java {

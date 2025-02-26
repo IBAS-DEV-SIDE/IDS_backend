@@ -27,3 +27,14 @@ springdoc:
     path: /swagger-ui.html #Swagger UI 접속 경로
     operationsSorter: method  #HTTP 메서드 순서 정렬
     tagsSorter: alpha  #태그 정렬
+  packages-to-scan: com.spoti.api.auth.domain, com.example
+  paths-to-match: /api/**
+
+spotify:
+  client-id: ${SPOTIFY_CLIENT_ID}
+  client-secret: ${SPOTIFY_CLIENT_SECRET}
+  redirect-uri: ${SPOTIFY_REDIRECT_URI}
+  scope: user-read-private user-read-email
+  authorization-uri: https://accounts.spotify.com/authorize
+  token-uri: https://accounts.spotify.com/api/token
+  user-info-uri: https://api.spotify.com/v1/me

@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+spotify:
+  client-id: test-client-id
+  client-secret: test-client-secret
+  redirect-uri: http://localhost:8080/api/auth/callback
+  scope: user-read-private user-read-email
+  authorization-uri: https://accounts.spotify.com/authorize
+  token-uri: https://accounts.spotify.com/api/token
+  user-info-uri: https://api.spotify.com/v1/me

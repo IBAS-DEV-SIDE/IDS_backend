@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/module_oauth/IDS_backend.module_oauth.main.iml" filepath="$PROJECT_DIR$/.idea/modules/module_oauth/IDS_backend.module_oauth.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/resource-server/IDS_backend.resource-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/resource-server/IDS_backend.resource-server.main.iml" />
     </modules>
   </component>
